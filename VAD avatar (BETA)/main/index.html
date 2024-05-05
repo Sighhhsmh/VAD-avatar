@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="../scripts/varbroker.js"></script>
+
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/style2.css">
+    
+    <script type="module" src="../scripts/VAD2.js"></script>
+    <script type="module" src="../scripts/mouse-look(alt).js"></script>
+    <script type="module" src="../scripts/mousePos.js"></script>
+    <!-- <script type="module" src="../scripts/facemove+[ns].js"></script> -->
+    <script type="module" src="../scripts/virtualmouse.js"></script>
+
+    <!-- <script src="../scripts/custommenus.js"></script> -->
+    <link rel="stylesheet" href="../style/custom-menu.css">
+
+    <title>Frankestien</title>
+    <link rel="shortcut icon" href="../assets/VAD.ico" type="image/x-icon">
+</head>
+<body >
+    <div class="main">
+        <div id="blk1">
+            
+            <div id="moving">
+                <div id="rotating">
+                    <div id="pad">
+                        <div id="mousepad">
+                            <img id="mouse" src="../assets/mouze.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="consolidated">
+                
+                <!-- <div id="faceBackground">
+                    <img class="prp1" src=""><img class="prp2" src=""><img class="prp3" src=""><img class="prp4" src=""><img
+                        class="prp5" src="">
+                </div> -->
+                
+                <div id="facegroup">
+                    
+                    <div id="faceBackground">
+                        <img class="prp1" src=""><img class="prp2" src=""><img class="prp3" src=""><img class="prp4" src=""><img
+                            class="prp5" src="">
+                    </div>
+                    <!-- background -->
+                    <img id="face" src="../assets/invisible.png" alt="">
+                    
+                    <div id="draggableDiv" class="anim">
+                        <img class="mouth" id="inactive" src="../assets/d7abks6-842d0b46-bb6a-4e43-9e06-7e2c94e323a7.png" alt="">
+                        <img class="mouth" id="active" src="../assets/d7abks6-842d0b46-bb6a-4e43-9e06-7e2c94e323a7.gif" alt="">
+                        <!-- <video id="active" src="../assets/d7abks6-842d0b46-bb6a-4e43-9e06-7e2c94e323a7.mp4" autoplay loop></video> -->
+                    </div>
+                    <!-- foreground -->
+                    <div id="faceForeground">
+                        <img class="prp1" src=""><img class="prp2" src=""><img class="prp3" src=""><img class="prp4" src=""><img class="prp5" src="">
+                    </div>
+                </div>
+    
+            </div>
+
+            <div id="props" class="pin">
+                <script>
+                    function toggleProp() {
+                        var props = document.getElementById('props');
+                        props.classList.toggle('pout');
+                        props.classList.toggle('pin');
+                        
+                        var btn = document.getElementById('propbtn');
+                        
+                        switch (props.className) {
+                            case "pout":
+                                btn.innerText=">>"
+                                break;
+                            case "pin":
+                                btn.innerText="<<"
+                                break;
+                        }      
+                    }
+                </script>
+                
+                <button id="propbtn" onclick="toggleProp()"><<</button>
+                <div class="propwrap">
+                    <div class="prop">
+                        <label class="plable" for="p1">+</label>
+                        <input id="p1" type="file" class="pinput">
+                        <select name="s0" id="s0">
+                            <option value="foreground">foreground</option>
+                            <option value="background">background</option>
+                        </select>
+                    </div>
+                    <div class="prop">
+                        <label class="plable" for="p2">+</label>
+                        <input id="p2" type="file" class="pinput">
+                        <select name="s1" id="s1">
+                            <option value="foreground">foreground</option>
+                            <option value="background">background</option>
+                        </select>
+                    </div>
+                    <div class="prop">
+                        <label class="plable" for="p3">+</label>
+                        <input id="p3" type="file" class="pinput">
+                        <select name="s2" id="s2">
+                            <option value="foreground">foreground</option>
+                            <option value="background">background</option>
+                        </select>
+                    </div>
+                    <div class="prop">
+                        <label class="plable" for="p4">+</label>
+                        <input id="p4" type="file" class="pinput">
+                        <select name="s3" id="s3">
+                            <option value="foreground">foreground</option>
+                            <option value="background">background</option>
+                        </select>
+                    </div>
+                    <div class="prop">
+                        <label class="plable" for="p5">+</label>
+                        <input id="p5" type="file" class="pinput">
+                        <select name="s4" id="s4">
+                            <option value="foreground">foreground</option>
+                            <option value="background">background</option>
+                        </select>
+                    </div>
+
+                    <!-- <script src="../scripts/props.js"></script> -->
+
+                </div>
+            </div>
+
+            <div id="scroll">
+                <a href="#blk1" id="up" class="inactive" onclick="toggleState();">Canvas</a>
+                <a href="#blk2" id="down" class="active" onclick="toggleState();">Settings</a>
+                <script>
+                    function toggleState() {
+                        var upLink = document.getElementById('up');
+                        var downLink = document.getElementById('down');
+
+                        upLink.classList.toggle('active');
+                        upLink.classList.toggle('inactive');
+
+                        downLink.classList.toggle('active');
+                        downLink.classList.toggle('inactive');
+                    }
+                </script>
+            </div>
+        </div>
+        <div id="blk2">
+            <div class="headings">
+                <h1>Settings</h1>
+                <hr>
+            </div>
+            <div id="sliderwrapper">
+                <div class="nrmwrapper">
+                    <div class="sliders" id="nrm">
+
+                        <div class="slider 2">
+                            <input type="file" id="imggrab" accept="image/*">
+                            <button id="resetimg">Reset img</button>
+                            <script>
+                                document.getElementById('imggrab').addEventListener('change', function() {
+                                        // Check if a file is selected
+                                    if (document.getElementById('imggrab').files && document.getElementById('imggrab').files[0]) {
+                                        // Create a FileReader object to read the selected file
+                                        var reader = new FileReader();
+    
+                                        // Event listener for when the FileReader finishes reading the file
+                                        reader.onload = function (e) {
+                                            // Set the image source to the result of reading the file
+                                            document.getElementById('face').src = e.target.result;
+                                            localStorage.setItem('FaceImgURL', e.target.result);
+                                        };
+    
+                                        // Read the selected file as a data URL
+                                        reader.readAsDataURL(document.getElementById('imggrab').files[0]);
+                                    }
+                                });
+                                function resetimg(){
+                                            var DfIMG = '../assets/invisible.png'; 
+                                            document.getElementById('face').src = DfIMG; 
+                                            localStorage.setItem('FaceImgURL', DfIMG);
+                                        }
+                                document.getElementById('resetimg').addEventListener('click', resetimg);
+                            </script>
+                        </div>
+    
+                        <div class="slider 6">
+                            <label for="facesize">Head Size</label>
+                            <input type="range" id="facesize" min="0" max="200" step="5" value="100">
+                            <span id="6"></span>
+                            <script>
+                                facesize.addEventListener('input', function () {
+                                    var scaleValue = facesize.value;
+                                    document.getElementById('6').innerText = scaleValue;
+    
+                                    facegroup.style.transform = 'scale(' + (scaleValue / 100) + ')';
+    
+                                    localStorage.setItem('FaceScale', scaleValue);
+                                });
+                            </script>
+                        </div>
+                        
+                        <div class="slider 4">
+                            <label for="resizer">Mouth Size</label>
+                            <input type="range" id="resizer" min="0" max="200" step="5" value="100">
+                            <span id="4"></span>
+                            <script>
+                                // Get references to the slider and image elements
+                                // var scaleSlider = document.getElementById('resizer');
+                                var mouthImages = document.querySelectorAll('.mouth');
+    
+                                // Event listener for slider input
+                                resizer.addEventListener('input', function () {
+                                    // Get the current scale value from the slider
+                                    var scaleValue = resizer.value;
+                                    document.getElementById('4').innerText= scaleValue
+
+                                    localStorage.setItem('MouthScale', scaleValue);
+    
+                                    // Apply the scale transformation to each image with class "mouth"
+                                    mouthImages.forEach(function (image) {
+                                        image.style.transform = 'scale(' + (scaleValue / 100) + ')';
+                                    });
+                                });
+                            </script>
+                        </div>
+
+                        <div class="slider 5">
+                            <label for="enableRotation">Enable "Look At Mouse"</label>
+                            <input id="enableRotation" type="checkbox">
+                            <script>
+                                enableRotation.addEventListener('change', function(){
+                                    if(this.checked)
+                                    {
+                                        localStorage.setItem('look-bool', "1");
+                                        const script1 = document.createElement('script');
+                                        script1.src = '../scripts/mouse-look(alt).js';
+                                        script1.id = 'mouselookscript'
+                                        document.head.appendChild(script1);
+    
+                                        script1.onload = function() {
+                                            // Code inside facemove.js is now accessible
+                                            // Perform any actions or initialize here
+                                            initMouselook();
+                                        };
+                                    }
+                                    else
+                                    {
+                                        localStorage.setItem("look-bool", "0");
+                                        const mouselookscript = document.getElementById(`mouselookscript`);
+                                        if (mouselookscript) {
+                                            mouselookscript.remove();
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+
+                        <div class="slider 23">
+                            <label for="hidemouse">Hide Virtual Mouse</label>
+                            <input id="hidemouse" type="checkbox">
+                            <script>
+                                hidemouse.addEventListener('change', function(){
+                                    if(this.checked){document.getElementById('moving').classList.add('hide');}
+                                    else{document.getElementById('moving').classList.remove('hide');}
+                                    localStorage.setItem('isMouseVisible', !this.checked);
+                                });
+                            </script>
+                        </div>
+
+                        <div class="slider 8">
+                            <label for="vmScale">Mousepad Size</label>
+                            <input type="range" id="vmScale" min="0" max="100" step="2" value="100">
+                            <span id="8"></span>
+                            <script>
+    
+                                var vmScale = document.getElementById('vmScale');
+                                
+                                vmScale.addEventListener('input', function(){
+                                    var val = vmScale.value;
+                                    var vmsv = val / 100;
+                                    document.getElementById('8').innerText=val;
+                            
+                                    document.getElementById('moving').style.transform = `scale(${vmsv})`;
+    
+                                    localStorage.setItem('PadScale', vmsv);
+                                });
+    
+                            </script>                    
+                        </div>
+    
+                        <div class="slider 7">
+                            <label for="dragCheckbox">Edit Mousepad Position [drag]</label>
+                            <input type="checkbox" id="dragCheckbox" onclick="adjustments(event, 'dragCheckbox')"> <hr>
+                            <label for="rotateCheckbox">Rotate Mousepad [drag]</label>
+                            <input type="checkbox" id="rotateCheckbox" onclick="adjustments(event, 'rotateCheckbox')"> <hr>
+                            <label for="padflip">Flip Mousepad</label>
+                            <input type="checkbox" id="padflip">
+                            <script> 
+                                var check = document.getElementById('padflip');
+                                check.addEventListener('input', function(){
+                                    if(check.checked)
+                                        {localStorage.setItem('PadFlip', 180);} 
+                                    else
+                                        {localStorage.setItem('PadFlip', 0);}
+                                        
+                                        const PadRotX = localStorage.getItem('PadRotX') || '0';
+                                        const PadRotZ = localStorage.getItem('PadRotZ') || '0';
+                                        const PadScale = localStorage.getItem('PadScale') || '0.6';
+                                        const PadPersp = localStorage.getItem('PadPersp') || '800';
+                                        const PadFlip = localStorage.getItem('PadFlip') || '0';
+                                        document.getElementById('rotating').style.transform = `perspective(${PadPersp}px) scale(${PadScale}) rotateX(${PadRotX}deg) rotateY(${PadFlip}deg) rotateZ(${PadRotZ}deg)`;
+                                }); 
+                            </script>
+                            <script>
+                                async function adjustments(event, checkboxId) {
+                                    var checkbox = event.target;
+                                    console.log('triggered', checkboxId);
+    
+                                    // var dragscript, rotatescript;
+    
+                                    if (checkboxId === "dragCheckbox") {
+                                        if (checkbox.checked) {
+                                            console.log('first statement true');
+                                            await unloadRotateScript();
+                                            loadDragScript();
+                                        } else {
+                                            console.log('first statement false');
+                                            await unloadDragScript();
+                                        }
+                                        document.getElementById('rotateCheckbox').checked = false;
+                                    } else if (checkboxId === "rotateCheckbox") {
+                                        if (checkbox.checked) {
+                                            console.log('second statement true');
+                                            await unloadDragScript();
+                                            loadRotateScript();
+                                        } else {
+                                            console.log('second statement false');
+                                            await unloadRotateScript();
+                                        }
+                                        document.getElementById('dragCheckbox').checked = false;
+                                    }
+                                }
+    
+                                async function loadDragScript() {
+                                    dragscript = document.createElement('script');
+                                    dragscript.id = "dragscript";
+                                    dragscript.type = "module";
+                                    dragscript.src = '../scripts/move[ns].js';
+                                    document.head.appendChild(dragscript);
+    
+                                    dragscript.onload = async function () {
+                                        const { draggableScript } = await import(dragscript.src);
+                                        draggableScript.init();
+                                    };
+                                }
+    
+                                async function loadRotateScript() {
+                                    rotatescript = document.createElement('script');
+                                    rotatescript.id = "rotatescript";
+                                    rotatescript.type = "module";
+                                    rotatescript.src = '../scripts/gimbal[ns].js';
+                                    document.head.appendChild(rotatescript);
+    
+                                    rotatescript.onload = async function () {
+                                        const { rotateScript } = await import(rotatescript.src);
+                                        rotateScript.init();
+                                    };
+                                }
+    
+                                async function unloadDragScript() {
+                                    if (document.getElementById('dragscript')) {
+                                        const { draggableScript } = await import(document.getElementById('dragscript').src);
+                                        draggableScript.unload();
+                                        document.getElementById('dragscript').remove();
+                                    }
+                                }
+    
+                                async function unloadRotateScript() {
+                                    if (document.getElementById('rotatescript')) {
+                                        const { rotateScript } = await import(document.getElementById('rotatescript').src);
+                                        rotateScript.unload();
+                                        document.getElementById('rotatescript').remove();
+                                    }
+                                }
+                            </script>
+                        </div>
+                        
+                        <div class="slider 3">
+                            <label for="threshold">Threshold:</label>
+                            <input type="range" id="threshold" min="-45" max="0" step="3" value="-30">
+                            <span id="3"></span>
+                            <script>
+                                document.getElementById('threshold').addEventListener('input', function () 
+                            {
+                                // Update the output element with the live value
+                                var AudioThreshold = document.getElementById('threshold').value;
+                                document.getElementById('3').innerText = AudioThreshold + ' ' + 'dBs';
+    
+                                localStorage.setItem('AudioThreshold', AudioThreshold);
+                            });
+                            </script>
+                        </div>
+
+                        <div class="slider 22">
+                            <label for="headmove">Move Head</label>
+                            <input id="headmove" type="checkbox" onchange="adjustments2(event, 'headmove')">
+                            <label for="propmove">Move props</label>
+                            <input id="propmove" type="checkbox" onchange="adjustments2(event, 'propmove')">
+                            <script>
+                                async function adjustments2(event, checkboxId) {
+                                    var checkbox = event.target;
+                                    console.log('triggered', checkboxId);
+
+                                    // var facemove, propmove;
+
+                                    if (checkboxId === "headmove") {
+                                        if (checkbox.checked) {
+                                            console.log('first statement true');
+                                            await unloadPropmove();
+                                            loadFacemove();
+                                        } else {
+                                            console.log('first statement false');
+                                            await unloadFacemove();
+                                        }
+                                        document.getElementById('propmove').checked = false;
+                                    } else if (checkboxId === "propmove") {
+                                        if (checkbox.checked) {
+                                            console.log('second statement true');
+                                            await unloadFacemove();
+                                            loadPropmove();
+                                        } else {
+                                            console.log('second statement false');
+                                            await unloadPropmove();
+                                        }
+                                        document.getElementById('headmove').checked = false;
+                                    }
+                                }
+
+                                async function loadFacemove() {
+                                    script1 = document.createElement('script');
+                                    script1.id = "FMScript"; // Replace with appropriate ID
+                                    script1.type = "module";
+                                    script1.src = '../scripts/facemove+[ns].js'; // Replace with appropriate source
+                                    document.head.appendChild(script1);
+
+                                    script1.onload = async function () {
+                                        const { facemove } = await import(script1.src);
+                                        facemove.init();
+                                    };
+                                }
+
+                                async function loadPropmove() {
+                                    script2 = document.createElement('script');
+                                    script2.id = "PMScript"; // Replace with appropriate ID
+                                    script2.type = "module";
+                                    script2.src = '../scripts/prop-move.js'; // Replace with appropriate source
+                                    document.head.appendChild(script2);
+
+                                    script2.onload = async function () {
+                                        const { propmove } = await import(script2.src);
+                                        propmove.init();
+                                    };
+                                }
+
+                                async function unloadFacemove() {
+                                    if (document.getElementById('FMScript')) { // Replace with appropriate ID
+                                        const { facemove } = await import(document.getElementById('FMScript').src); // Replace with appropriate ID
+                                        facemove.unload();
+                                        document.getElementById('FMScript').remove(); // Replace with appropriate ID
+                                    }
+                                }
+
+                                async function unloadPropmove() {
+                                    if (document.getElementById('PMScript')) { // Replace with appropriate ID
+                                        const { propmove } = await import(document.getElementById('PMScript').src); // Replace with appropriate ID
+                                        propmove.unload();
+                                        document.getElementById('PMScript').remove(); // Replace with appropriate ID
+                                    }
+                                }
+
+                            </script>
+                        </div>
+
+                        <div class="slider 19">
+                            <label for="PPS">Mousepad 3D Effect [less=more]</label>
+                            <input type="range" id="PPS" min="0" max="2000" step="50" value="800">
+                            <span id="19"></span>
+                            <script>
+                                document.getElementById('PPS').addEventListener('input', function () 
+                            {
+                                var PPS = document.getElementById('PPS').value;
+                                document.getElementById('19').innerText = PPS;
+                                localStorage.setItem('PadPersp', PPS);
+
+                                PadRotX = localStorage.getItem('PadRotX') || '0';
+                                PadRotZ = localStorage.getItem('PadRotZ') || '0';
+                                PadScale = localStorage.getItem('PadScale') || '0.6';
+                                PadPersp = localStorage.getItem('PadPersp') || '800';
+                                PadFlip = localStorage.getItem('PadFlip') || '0';
+                                document.getElementById('rotating').style.transform = `perspective(${PadPersp}px) scale(${PadScale}) rotateX(${PadRotX}deg) rotateY(${PadFlip}deg) rotateZ(${PadRotZ}deg)`;
+                            });
+                            </script>
+                        </div>
+
+                        <div class="slider 20">
+                            <label for="FSA">Face Shake Amount</label>
+                            <input type="range" id="FSA" min="0" max="2" step="0.01" value="0.30">
+                            <span id="20"></span>
+                            <script>
+                                document.getElementById('FSA').addEventListener('input', function () 
+                            {
+                                var FSA = document.getElementById('FSA').value;
+                                document.getElementById('20').innerText = FSA;
+                                localStorage.setItem('FaceShake', FSA);
+                            });
+                            </script>
+                        </div>
+
+                        <div class="slider 21">
+                            <label for="SS">Face Shake Speed [less=fast]</label>
+                            <input type="range" id="SS" min="1" max="1000" step="1" value="150">
+                            <span id="21"></span>
+                            <script>
+                                document.getElementById('SS').addEventListener('input', function () 
+                            {
+                                var SS = document.getElementById('SS').value;
+                                document.getElementById('21').innerText = SS;
+                                localStorage.setItem('ShakeSpeed', SS);
+                            });
+                            </script>
+                        </div>
+
+                        <button id="toadv">Advanced Settings >></button>
+                        <script>
+                            function scrollright(){
+                                document.getElementById('sliderwrapper').style.transform = 'translate(-100vw, 0%)';
+                            }
+                            document.getElementById('toadv').addEventListener('click', scrollright);
+                        </script>
+    
+                    </div>
+                </div>
+
+                <div class="sliders" id="adv">
+                    <div class="slider 1">
+                        <label for="fftSize">FFT Size:</label>
+                        <input type="range" id="fftSize" min="32" max="1024" step="1" value="256"> 
+                        <span id="1"></span>
+                        <script>
+                            var fftSizeSlider = document.getElementById('fftSize');
+                        
+                            fftSizeSlider.addEventListener('input', function () {
+                                var currentValue = parseInt(fftSizeSlider.value);
+                                var nearestPowerOfTwo = Math.pow(2, Math.round(Math.log2(currentValue)));
+                                fftSizeSlider.value = nearestPowerOfTwo;
+
+                                // Update the output element with the live value
+                                document.getElementById('1').innerText= document.getElementById('fftSize').value
+
+                                localStorage.setItem('fftSize', nearestPowerOfTwo);
+
+                            }); 
+                        </script>
+                    </div>
+
+                    <div class="slider 9">
+                        <label for="FMP">Face Max Pitch:</label>
+                        <input type="range" id="FMP" min="0" max="10" step="1" value="4">
+                        <span id="9"></span>
+                        <script>
+                            document.getElementById('FMP').addEventListener('input', function () 
+                        {
+                            var FMP = document.getElementById('FMP').value;
+                            document.getElementById('9').innerText = FMP;
+                            localStorage.setItem('MaxPitchLimit', FMP);
+                        });
+                        </script>
+                    </div>
+
+                    <div class="slider 10">
+                        <label for="FMY">Face Max Yaw:</label>
+                        <input type="range" id="FMY" min="0" max="10" step="1" value="3">
+                        <span id="10"></span>
+                        <script>
+                            document.getElementById('FMY').addEventListener('input', function () 
+                        {
+                            var FMY = document.getElementById('FMY').value;
+                            document.getElementById('10').innerText = FMY;
+                            localStorage.setItem('MaxYawLimit', FMY);
+                        });
+                        </script>
+                    </div>
+
+                    <div class="slider 11">
+                        <label for="FZM">Face X Max:</label>
+                        <input type="range" id="FXM" min="0" max="500" step="1" value="250">
+                        <span id="11"></span>
+                        <script>
+                            document.getElementById('FXM').addEventListener('input', function () 
+                        {
+                            var FXM = document.getElementById('FXM').value;
+                            document.getElementById('11').innerText = FXM;
+                            localStorage.setItem('LookXRange', FXM);
+                        });
+                        </script>
+                    </div>
+
+                    <div class="slider 12">
+                        <label for="FYM">Face Y Max:</label>
+                        <input type="range" id="FYM" min="0" max="500" step="1" value="250">
+                        <span id="12"></span>
+                        <script>
+                            document.getElementById('FYM').addEventListener('input', function () 
+                        {
+                            var FYM = document.getElementById('FYM').value;
+                            document.getElementById('12').innerText = FYM;
+                            localStorage.setItem('LookYRange', FYM);
+                        });
+                        </script>
+                    </div>
+
+                    <div class="slider 13">
+                        <label for="FSS">Face Sphere Size:</label>
+                        <input type="range" id="FSS" min="-50" max="50" step="10" value="-20">
+                        <span id="13"></span>
+                        <script>
+                            document.getElementById('FSS').addEventListener('input', function () 
+                        {
+                            var FSS = document.getElementById('FSS').value;
+                            document.getElementById('13').innerText = FSS;
+                            localStorage.setItem('SphereRadX', FSS);
+                        });
+                        </script>
+                    </div>
+
+                    <div class="slider 14">
+                        <label for="PS">Perspective Shift:</label>
+                        <input type="range" id="PS" min="300" max="2000" step="50" value="1000">
+                        <span id="14"></span>
+                        <script>
+                            document.getElementById('PS').addEventListener('input', function () 
+                        {
+                            var PS = document.getElementById('PS').value;
+                            document.getElementById('14').innerText = PS;
+                            localStorage.setItem('FacePersp', PS);
+                        });
+                        </script>
+                    </div>
+
+                    <div class="slider 15">
+                        <label for="RES">Rotation Edit Sens:</label>
+                        <input type="range" id="RES" min="0" max="2" step="0.1" value="0.2">
+                        <span id="15"></span>
+                        <script>
+                            document.getElementById('RES').addEventListener('input', function () 
+                        {
+                            var RES = document.getElementById('RES').value;
+                            document.getElementById('15').innerText = RES;
+                            localStorage.setItem('PadRotSensi', RES);
+                        });
+                        </script>
+                    </div>
+
+                    <div class="slider 16">
+                        <label for="MMR">Mouse Max Rotation:</label>
+                        <input type="range" id="MMR" min="0" max="180" step="1" value="15">
+                        <span id="16"></span>
+                        <script>
+                            document.getElementById('MMR').addEventListener('input', function () 
+                        {
+                            var MMR = document.getElementById('MMR').value;
+                            document.getElementById('16').innerText = MMR;
+                            localStorage.setItem('MouseRotationAmount', MMR);
+                        });
+                        </script>
+                    </div>
+
+                    <div class="slider 17">
+                        <label for="MRT">Mouse Reset Timer:</label>
+                        <input type="range" id="MRT" min="0" max="6000" step="50" value="1000">
+                        <span id="17"></span>
+                        <script>
+                            document.getElementById('MRT').addEventListener('input', function () 
+                        {
+                            var MRT = document.getElementById('MRT').value;
+                            document.getElementById('17').innerText = MRT;
+                            localStorage.setItem('MouseIdleTimeout', MRT);
+                        });
+                        </script>
+                    </div>
+
+                    <!-- <div class="slider 18">
+                        <label for="TS">Threshold Sensitivity:</label>
+                        <input type="range" id="TS" min="0" max="2" step="0.1" value="0.8">
+                        <span id="18"></span>
+                        <script>
+                            document.getElementById('TS').addEventListener('input', function () 
+                        {
+                            var TS = document.getElementById('TS').value;
+                            document.getElementById('18').innerText = TS;
+                            localStorage.setItem('ThresholdMult', TS);
+                        });
+                        </script>
+                    </div> -->
+
+                    <div class="slider"><h4>Note: "Refresh to apply changes."</h4> <hr></div>
+
+                    <button id="tonrm"><< Back</button>
+                    <script>
+                        function scrollleft(){
+                            document.getElementById('sliderwrapper').style.transform = 'translate(0vw, 0%)';
+                        }
+                        document.getElementById('tonrm').addEventListener('click', scrollleft);
+                    </script>
+                
+                </div>
+            </div>
+            <!-- <div class="vadcheck">
+                <span class="notify">
+                </span>
+            </div> -->
+        </div>
+        <div id="blk3">
+            
+            <!-- <div class="help"> <hr> <h1 style="text-align: center; text-decoration: underline;">--- HELP ---</h1> 
+
+                
+                <div class="help3"><h1>CHOOSE FILE</h1><p>This will be your static face image. All preference, go crazy.</p></div>
+                
+                <div class="help4"><h1>ADJUST MOUTH</h1><p>click on the mouth and drag it to move it relative to your face image, click again to drop (buggy.)</p></div>
+                
+                <div class="help2"><h1>THRESHOLD</h1><p>Threshold over which the mouth starts moving. Adjust it so that mouth doesnt move when you're not speaking but also so that the mouth doesnt move from background noise.</p></div>
+                
+                <div class="help1"><h1>FFT SIZE</h1><p>Buffer size of your microphone capture (let it be if youre unsure).</p></div>
+            
+            </div> -->
+        </div>
+    </div>
+    <script type="module">
+        import{PadValInit, FacePosInit, VADinit, PropInit} from '../scripts/varbroker.js';
+        document.addEventListener('DOMContentLoaded', function () {
+            PadValInit();
+            FacePosInit();
+            VADinit();
+            PropInit();
+        });
+    </script>
+    <script src="../scripts/custommenus.js"></script>
+    <script src="../scripts/props.js"></script>
+</body>
+</html>

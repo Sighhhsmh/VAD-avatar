@@ -1,0 +1,19 @@
+
+
+
+
+
+
+
+
+revise VAD faceshake if needed
+
+experiment hand over mouse
+
+ADD CUSTOM OBJECT/PROP[imgs] [can be attached to canvas or facegroup]------[check]
+
+scene saving - [saving element positions]
+recalling scenes / loading last saved scene
+syncing scene change with OBS scenes??
+
+experiment three.js 3d mouse

@@ -1,0 +1,44 @@
+.contextMenu
+{
+    z-index: 99;
+    position: absolute;
+    flex-direction: column;
+    justify-content: space-around;
+    min-width: 20rem;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+    background-color: azure;
+    padding: 0.6rem 0rem;
+    opacity: 0.2;
+    font-size: 1rem;
+}
+.contextMenu:hover
+{
+    opacity: 1;
+}
+.hover:hover
+{
+    background: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.option
+{
+    position: relative;
+    width: 96%;
+    /* border-radius: 4%; */
+    padding: 0.4rem 0 0.4rem 0.8rem ;
+    user-select: none;
+}
+.option-range
+{
+    width: 80%;
+    margin-left: 1.5rem;
+}
+.hide
+{
+    display: none;
+}
+.change
+{
+    background-color: rgba(225, 0, 0, 0.2);
+}
