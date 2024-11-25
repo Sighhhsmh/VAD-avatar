@@ -18,7 +18,7 @@ async def send_mouse_coordinates(websocket, path):
     except websockets.exceptions.ConnectionClosedOK:
         print("Connection closed.")
 
-start_server = websockets.serve(send_mouse_coordinates, "localhost", 8001)
+start_server = websockets.serve(send_mouse_coordinates, "localhost", 8008)
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
