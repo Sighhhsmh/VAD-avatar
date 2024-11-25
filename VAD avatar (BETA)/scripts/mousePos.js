@@ -1,4 +1,4 @@
-window.socket = new WebSocket("ws://localhost:8001");
+window.socket = new WebSocket("ws://localhost:8008");
 
 window.socket.onopen = function (event) {
     console.log("connected to python server");
