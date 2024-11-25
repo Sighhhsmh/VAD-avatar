@@ -546,178 +546,180 @@
                     </div>
                 </div>
 
-                <div class="sliders" id="adv">
-                    <div class="slider 1">
-                        <label for="fftSize">FFT Size:</label>
-                        <input type="range" id="fftSize" min="32" max="1024" step="1" value="256"> 
-                        <span id="1"></span>
+                <div class="advwrapper">
+                    <div class="sliders" id="adv">
+                        <div class="slider 1">
+                            <label for="fftSize">FFT Size:</label>
+                            <input type="range" id="fftSize" min="32" max="1024" step="1" value="256"> 
+                            <span id="1"></span>
+                            <script>
+                                var fftSizeSlider = document.getElementById('fftSize');
+                            
+                                fftSizeSlider.addEventListener('input', function () {
+                                    var currentValue = parseInt(fftSizeSlider.value);
+                                    var nearestPowerOfTwo = Math.pow(2, Math.round(Math.log2(currentValue)));
+                                    fftSizeSlider.value = nearestPowerOfTwo;
+    
+                                    // Update the output element with the live value
+                                    document.getElementById('1').innerText= document.getElementById('fftSize').value
+    
+                                    localStorage.setItem('fftSize', nearestPowerOfTwo);
+    
+                                }); 
+                            </script>
+                        </div>
+    
+                        <div class="slider 9">
+                            <label for="FMP">Face Max Pitch:</label>
+                            <input type="range" id="FMP" min="0" max="10" step="1" value="4">
+                            <span id="9"></span>
+                            <script>
+                                document.getElementById('FMP').addEventListener('input', function () 
+                            {
+                                var FMP = document.getElementById('FMP').value;
+                                document.getElementById('9').innerText = FMP;
+                                localStorage.setItem('MaxPitchLimit', FMP);
+                            });
+                            </script>
+                        </div>
+    
+                        <div class="slider 10">
+                            <label for="FMY">Face Max Yaw:</label>
+                            <input type="range" id="FMY" min="0" max="10" step="1" value="3">
+                            <span id="10"></span>
+                            <script>
+                                document.getElementById('FMY').addEventListener('input', function () 
+                            {
+                                var FMY = document.getElementById('FMY').value;
+                                document.getElementById('10').innerText = FMY;
+                                localStorage.setItem('MaxYawLimit', FMY);
+                            });
+                            </script>
+                        </div>
+    
+                        <div class="slider 11">
+                            <label for="FZM">Face X Max:</label>
+                            <input type="range" id="FXM" min="0" max="500" step="1" value="250">
+                            <span id="11"></span>
+                            <script>
+                                document.getElementById('FXM').addEventListener('input', function () 
+                            {
+                                var FXM = document.getElementById('FXM').value;
+                                document.getElementById('11').innerText = FXM;
+                                localStorage.setItem('LookXRange', FXM);
+                            });
+                            </script>
+                        </div>
+    
+                        <div class="slider 12">
+                            <label for="FYM">Face Y Max:</label>
+                            <input type="range" id="FYM" min="0" max="500" step="1" value="250">
+                            <span id="12"></span>
+                            <script>
+                                document.getElementById('FYM').addEventListener('input', function () 
+                            {
+                                var FYM = document.getElementById('FYM').value;
+                                document.getElementById('12').innerText = FYM;
+                                localStorage.setItem('LookYRange', FYM);
+                            });
+                            </script>
+                        </div>
+    
+                        <div class="slider 13">
+                            <label for="FSS">Face Sphere Size:</label>
+                            <input type="range" id="FSS" min="-50" max="50" step="10" value="-20">
+                            <span id="13"></span>
+                            <script>
+                                document.getElementById('FSS').addEventListener('input', function () 
+                            {
+                                var FSS = document.getElementById('FSS').value;
+                                document.getElementById('13').innerText = FSS;
+                                localStorage.setItem('SphereRadX', FSS);
+                            });
+                            </script>
+                        </div>
+    
+                        <div class="slider 14">
+                            <label for="PS">Perspective Shift:</label>
+                            <input type="range" id="PS" min="300" max="2000" step="50" value="1000">
+                            <span id="14"></span>
+                            <script>
+                                document.getElementById('PS').addEventListener('input', function () 
+                            {
+                                var PS = document.getElementById('PS').value;
+                                document.getElementById('14').innerText = PS;
+                                localStorage.setItem('FacePersp', PS);
+                            });
+                            </script>
+                        </div>
+    
+                        <div class="slider 15">
+                            <label for="RES">Rotation Edit Sens:</label>
+                            <input type="range" id="RES" min="0" max="2" step="0.1" value="0.2">
+                            <span id="15"></span>
+                            <script>
+                                document.getElementById('RES').addEventListener('input', function () 
+                            {
+                                var RES = document.getElementById('RES').value;
+                                document.getElementById('15').innerText = RES;
+                                localStorage.setItem('PadRotSensi', RES);
+                            });
+                            </script>
+                        </div>
+    
+                        <div class="slider 16">
+                            <label for="MMR">Mouse Max Rotation:</label>
+                            <input type="range" id="MMR" min="0" max="180" step="1" value="15">
+                            <span id="16"></span>
+                            <script>
+                                document.getElementById('MMR').addEventListener('input', function () 
+                            {
+                                var MMR = document.getElementById('MMR').value;
+                                document.getElementById('16').innerText = MMR;
+                                localStorage.setItem('MouseRotationAmount', MMR);
+                            });
+                            </script>
+                        </div>
+    
+                        <div class="slider 17">
+                            <label for="MRT">Mouse Reset Timer:</label>
+                            <input type="range" id="MRT" min="0" max="6000" step="50" value="1000">
+                            <span id="17"></span>
+                            <script>
+                                document.getElementById('MRT').addEventListener('input', function () 
+                            {
+                                var MRT = document.getElementById('MRT').value;
+                                document.getElementById('17').innerText = MRT;
+                                localStorage.setItem('MouseIdleTimeout', MRT);
+                            });
+                            </script>
+                        </div>
+    
+                        <!-- <div class="slider 18">
+                            <label for="TS">Threshold Sensitivity:</label>
+                            <input type="range" id="TS" min="0" max="2" step="0.1" value="0.8">
+                            <span id="18"></span>
+                            <script>
+                                document.getElementById('TS').addEventListener('input', function () 
+                            {
+                                var TS = document.getElementById('TS').value;
+                                document.getElementById('18').innerText = TS;
+                                localStorage.setItem('ThresholdMult', TS);
+                            });
+                            </script>
+                        </div> -->
+    
+                        <div class="slider"><h4>Note: "Refresh to apply changes."</h4> <hr></div>
+    
+                        <button id="tonrm"><< Back</button>
                         <script>
-                            var fftSizeSlider = document.getElementById('fftSize');
-                        
-                            fftSizeSlider.addEventListener('input', function () {
-                                var currentValue = parseInt(fftSizeSlider.value);
-                                var nearestPowerOfTwo = Math.pow(2, Math.round(Math.log2(currentValue)));
-                                fftSizeSlider.value = nearestPowerOfTwo;
-
-                                // Update the output element with the live value
-                                document.getElementById('1').innerText= document.getElementById('fftSize').value
-
-                                localStorage.setItem('fftSize', nearestPowerOfTwo);
-
-                            }); 
+                            function scrollleft(){
+                                document.getElementById('sliderwrapper').style.transform = 'translate(0vw, 0%)';
+                            }
+                            document.getElementById('tonrm').addEventListener('click', scrollleft);
                         </script>
+                    
                     </div>
-
-                    <div class="slider 9">
-                        <label for="FMP">Face Max Pitch:</label>
-                        <input type="range" id="FMP" min="0" max="10" step="1" value="4">
-                        <span id="9"></span>
-                        <script>
-                            document.getElementById('FMP').addEventListener('input', function () 
-                        {
-                            var FMP = document.getElementById('FMP').value;
-                            document.getElementById('9').innerText = FMP;
-                            localStorage.setItem('MaxPitchLimit', FMP);
-                        });
-                        </script>
-                    </div>
-
-                    <div class="slider 10">
-                        <label for="FMY">Face Max Yaw:</label>
-                        <input type="range" id="FMY" min="0" max="10" step="1" value="3">
-                        <span id="10"></span>
-                        <script>
-                            document.getElementById('FMY').addEventListener('input', function () 
-                        {
-                            var FMY = document.getElementById('FMY').value;
-                            document.getElementById('10').innerText = FMY;
-                            localStorage.setItem('MaxYawLimit', FMY);
-                        });
-                        </script>
-                    </div>
-
-                    <div class="slider 11">
-                        <label for="FZM">Face X Max:</label>
-                        <input type="range" id="FXM" min="0" max="500" step="1" value="250">
-                        <span id="11"></span>
-                        <script>
-                            document.getElementById('FXM').addEventListener('input', function () 
-                        {
-                            var FXM = document.getElementById('FXM').value;
-                            document.getElementById('11').innerText = FXM;
-                            localStorage.setItem('LookXRange', FXM);
-                        });
-                        </script>
-                    </div>
-
-                    <div class="slider 12">
-                        <label for="FYM">Face Y Max:</label>
-                        <input type="range" id="FYM" min="0" max="500" step="1" value="250">
-                        <span id="12"></span>
-                        <script>
-                            document.getElementById('FYM').addEventListener('input', function () 
-                        {
-                            var FYM = document.getElementById('FYM').value;
-                            document.getElementById('12').innerText = FYM;
-                            localStorage.setItem('LookYRange', FYM);
-                        });
-                        </script>
-                    </div>
-
-                    <div class="slider 13">
-                        <label for="FSS">Face Sphere Size:</label>
-                        <input type="range" id="FSS" min="-50" max="50" step="10" value="-20">
-                        <span id="13"></span>
-                        <script>
-                            document.getElementById('FSS').addEventListener('input', function () 
-                        {
-                            var FSS = document.getElementById('FSS').value;
-                            document.getElementById('13').innerText = FSS;
-                            localStorage.setItem('SphereRadX', FSS);
-                        });
-                        </script>
-                    </div>
-
-                    <div class="slider 14">
-                        <label for="PS">Perspective Shift:</label>
-                        <input type="range" id="PS" min="300" max="2000" step="50" value="1000">
-                        <span id="14"></span>
-                        <script>
-                            document.getElementById('PS').addEventListener('input', function () 
-                        {
-                            var PS = document.getElementById('PS').value;
-                            document.getElementById('14').innerText = PS;
-                            localStorage.setItem('FacePersp', PS);
-                        });
-                        </script>
-                    </div>
-
-                    <div class="slider 15">
-                        <label for="RES">Rotation Edit Sens:</label>
-                        <input type="range" id="RES" min="0" max="2" step="0.1" value="0.2">
-                        <span id="15"></span>
-                        <script>
-                            document.getElementById('RES').addEventListener('input', function () 
-                        {
-                            var RES = document.getElementById('RES').value;
-                            document.getElementById('15').innerText = RES;
-                            localStorage.setItem('PadRotSensi', RES);
-                        });
-                        </script>
-                    </div>
-
-                    <div class="slider 16">
-                        <label for="MMR">Mouse Max Rotation:</label>
-                        <input type="range" id="MMR" min="0" max="180" step="1" value="15">
-                        <span id="16"></span>
-                        <script>
-                            document.getElementById('MMR').addEventListener('input', function () 
-                        {
-                            var MMR = document.getElementById('MMR').value;
-                            document.getElementById('16').innerText = MMR;
-                            localStorage.setItem('MouseRotationAmount', MMR);
-                        });
-                        </script>
-                    </div>
-
-                    <div class="slider 17">
-                        <label for="MRT">Mouse Reset Timer:</label>
-                        <input type="range" id="MRT" min="0" max="6000" step="50" value="1000">
-                        <span id="17"></span>
-                        <script>
-                            document.getElementById('MRT').addEventListener('input', function () 
-                        {
-                            var MRT = document.getElementById('MRT').value;
-                            document.getElementById('17').innerText = MRT;
-                            localStorage.setItem('MouseIdleTimeout', MRT);
-                        });
-                        </script>
-                    </div>
-
-                    <!-- <div class="slider 18">
-                        <label for="TS">Threshold Sensitivity:</label>
-                        <input type="range" id="TS" min="0" max="2" step="0.1" value="0.8">
-                        <span id="18"></span>
-                        <script>
-                            document.getElementById('TS').addEventListener('input', function () 
-                        {
-                            var TS = document.getElementById('TS').value;
-                            document.getElementById('18').innerText = TS;
-                            localStorage.setItem('ThresholdMult', TS);
-                        });
-                        </script>
-                    </div> -->
-
-                    <div class="slider"><h4>Note: "Refresh to apply changes."</h4> <hr></div>
-
-                    <button id="tonrm"><< Back</button>
-                    <script>
-                        function scrollleft(){
-                            document.getElementById('sliderwrapper').style.transform = 'translate(0vw, 0%)';
-                        }
-                        document.getElementById('tonrm').addEventListener('click', scrollleft);
-                    </script>
-                
                 </div>
             </div>
             <!-- <div class="vadcheck">
